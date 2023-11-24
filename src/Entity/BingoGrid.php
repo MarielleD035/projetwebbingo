@@ -19,6 +19,10 @@ class BingoGrid
     #[ORM\Column]
     private ?int $cote = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Users $iduser = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +48,18 @@ class BingoGrid
     public function setCote(int $cote): static
     {
         $this->cote = $cote;
+
+        return $this;
+    }
+
+    public function getIduser(): ?Users
+    {
+        return $this->iduser;
+    }
+
+    public function setIduser(?Users $iduser): static
+    {
+        $this->iduser = $iduser;
 
         return $this;
     }

@@ -22,6 +22,10 @@ class Cell
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $content = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?BingoGrid $idgrid = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +63,18 @@ class Cell
     public function setContent(?string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getIdgrid(): ?BingoGrid
+    {
+        return $this->idgrid;
+    }
+
+    public function setIdgrid(?BingoGrid $idgrid): static
+    {
+        $this->idgrid = $idgrid;
 
         return $this;
     }
