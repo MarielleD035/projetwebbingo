@@ -14,7 +14,7 @@ class Cell
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $coordX = null;
+    private ?int $coordX = null;
 
     #[ORM\Column]
     private ?int $coordY = null;
@@ -27,12 +27,12 @@ class Cell
         return $this->id;
     }
 
-    public function getCoordX(): ?string
+    public function getCoordX(): ?int
     {
         return $this->coordX;
     }
 
-    public function setCoordX(string $coordX): static
+    public function setCoordX(int $coordX): static
     {
         $this->coordX = $coordX;
 
