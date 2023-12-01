@@ -12,12 +12,12 @@
                 </li>
                 {% if is_granted('ROLE_USER') %}
                     <li>
-                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                        <a class="nav-link" href="#">Déconnexion</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="{{ path('app_login') }}">Connexion</a>
-                        <a href="{{ path('app_register') }}">Inscription</a></li>
+                        <a href="#">Connexion</a>
+                        <a href="#">Inscription</a></li>
                 {% endif %}
                 {% if is_granted('ROLE_SUPER_ADMIN_1') %}
                     <li>
