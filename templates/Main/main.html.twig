@@ -12,14 +12,14 @@
                 </li>
                 {% if is_granted('ROLE_USER') %}
                     <li class="navitem">
-                        <a class="nav-link" href="#">Déconnexion</a>
+                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
                     </li>
                 {% else %}
                     <li class="navitem">
-                        <button><a href="#">Connexion</a></button>
+                        <button><a href="{{ path('app_login') }}">Connexion</a></button>
                     </li>
                     <li class="navitem">
-                        <button><a href="#">Inscription</a></button>
+                        <button><a href="{{ path('app_register') }}">Inscription</a></button>
                     </li>
                 {% endif %}
                 {% if is_granted('ROLE_SUPER_ADMIN_1') %}
