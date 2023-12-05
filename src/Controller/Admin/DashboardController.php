@@ -2,6 +2,15 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Message;
+use App\Controller\MessageController;
+use App\Form\MessageType;
+use App\Repository\MessageRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+
+
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -14,7 +23,7 @@ use App\Entity\Users;
 use App\Form\UsersType;
 
 
-
+#[Route('/admin', name: 'admin')]
 class DashboardController extends AbstractDashboardController
 {
     public function __construct(
@@ -22,7 +31,7 @@ class DashboardController extends AbstractDashboardController
     ){
 
     }
-    #[Route('/admin', name: 'admin')]
+    #[Route('/', name: 'adminDashboard')]
     public function index(): Response
     {
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
@@ -33,7 +42,7 @@ class DashboardController extends AbstractDashboardController
         return $this->render('admin/my-dashboard.html.twig', [
             'chart' => $chart,
         ]);
-        
+
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -50,6 +59,13 @@ class DashboardController extends AbstractDashboardController
         // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
         //
         // return $this->render('some/path/my-dashboard.html.twig');
+    }
+    #[Route('/message', name: 'app_message_index', methods: ['GET'])]
+    public function message(MessageRepository $messageRepository): Response
+    {
+        return $this->render('message/index.html.twig', [
+            'messages' => $messageRepository->findAll(),
+        ]);
     }
 
     public function configureDashboard(): Dashboard

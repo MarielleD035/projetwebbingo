@@ -22,6 +22,9 @@
                         <button><a href="{{ path('app_register') }}">Inscription</a></button>
                     </li>
                 {% endif %}
+                <li class="navitem">
+                        <button><a href="{{ path('app_message_new') }}">message</a></button>
+                    </li>
                 {% if is_granted('ROLE_SUPER_ADMIN_1') %}
                     <li class="navitem">
                         <a class="nav-link" href="{{ path('show_dash') }}">Administration</a>
