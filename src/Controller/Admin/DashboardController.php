@@ -30,11 +30,10 @@ class DashboardController extends AbstractDashboardController
         $chart = $this->chartBuilder->createChart(Chart::TYPE_LINE);
         // ...set chart data and options somehow
 
-        if (3 == $this->getUser()->getRole()){
         return $this->render('admin/my-dashboard.html.twig', [
             'chart' => $chart,
         ]);
-        }
+        
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
