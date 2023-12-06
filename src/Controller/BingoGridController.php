@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\BingoGrid;
-use App\Form\BingoGrid2Type;
+use App\Form\BingoGrid3Type;
 use App\Repository\BingoGridRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +26,7 @@ class BingoGridController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $bingoGrid = new BingoGrid();
-        $form = $this->createForm(BingoGrid2Type::class, $bingoGrid);
+        $form = $this->createForm(BingoGrid3Type::class, $bingoGrid);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,7 @@ class BingoGridController extends AbstractController
     #[Route('/{id}/edit', name: 'app_bingo_grid_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, BingoGrid $bingoGrid, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(BingoGrid2Type::class, $bingoGrid);
+        $form = $this->createForm(BingoGrid3Type::class, $bingoGrid);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

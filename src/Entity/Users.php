@@ -31,12 +31,19 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: BingoGrid::class)]
-    private Collection $bingoGrids;
+    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: ReadAccess::class)]
+    private Collection $readAccesses;
+
+    #[ORM\OneToMany(mappedBy: 'iduser', targetEntity: MakeAccess::class)]
+    private Collection $makeAccesses;
+
+
 
     public function __construct()
     {
         $this->bingoGrids = new ArrayCollection();
+        $this->readAccesses = new ArrayCollection();
+        $this->makeAccesses = new ArrayCollection();
     }
     public function __toString(): string
     {
@@ -114,31 +121,63 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, BingoGrid>
+     * @return Collection<int, ReadAccess>
      */
-    public function getBingoGrids(): Collection
+    public function getReadAccesses(): Collection
     {
-        return $this->bingoGrids;
+        return $this->readAccesses;
     }
 
-    public function addBingoGrid(BingoGrid $bingoGrid): static
+    public function addReadAccess(ReadAccess $readAccess): static
     {
-        if (!$this->bingoGrids->contains($bingoGrid)) {
-            $this->bingoGrids->add($bingoGrid);
-            $bingoGrid->setIdUser($this);
+        if (!$this->readAccesses->contains($readAccess)) {
+            $this->readAccesses->add($readAccess);
+            $readAccess->setIdUser($this);
         }
+
         return $this;
     }
 
-    public function removeBingoGrid(BingoGrid $bingoGrid): static
+    public function removeReadAccess(ReadAccess $readAccess): static
     {
-        if ($this->bingoGrids->removeElement($bingoGrid)) {
+        if ($this->readAccesses->removeElement($readAccess)) {
             // set the owning side to null (unless already changed)
-            if ($bingoGrid->getIdUser() === $this) {
-                $bingoGrid->setIdUser(null);
+            if ($readAccess->getIdUser() === $this) {
+                $readAccess->setIdUser(null);
             }
         }
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, MakeAccess>
+     */
+    public function getMakeAccesses(): Collection
+    {
+        return $this->makeAccesses;
+    }
+
+    public function addMakeAccess(MakeAccess $makeAccess): static
+    {
+        if (!$this->makeAccesses->contains($makeAccess)) {
+            $this->makeAccesses->add($makeAccess);
+            $makeAccess->setIduser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMakeAccess(MakeAccess $makeAccess): static
+    {
+        if ($this->makeAccesses->removeElement($makeAccess)) {
+            // set the owning side to null (unless already changed)
+            if ($makeAccess->getIduser() === $this) {
+                $makeAccess->setIduser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

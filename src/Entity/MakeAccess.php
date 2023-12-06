@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\MakeAccessRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MakeAccessRepository::class)]
@@ -15,67 +13,39 @@ class MakeAccess
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Users::class)]
-    private Collection $iduser;
+    #[ORM\ManyToOne(inversedBy: 'makeAccesses')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?BingoGrid $idGrid = null;
 
-    #[ORM\ManyToMany(targetEntity: BingoGrid::class)]
-    private Collection $idgrid;
-
-    public function __construct()
-    {
-        $this->iduser = new ArrayCollection();
-        $this->idgrid = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'makeAccesses')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Users $iduser = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Users>
-     */
-    public function getIduser(): Collection
+    public function getIdGrid(): ?BingoGrid
+    {
+        return $this->idGrid;
+    }
+
+    public function setIdGrid(?BingoGrid $idGrid): static
+    {
+        $this->idGrid = $idGrid;
+
+        return $this;
+    }
+
+    public function getIduser(): ?Users
     {
         return $this->iduser;
     }
 
-    public function addIduser(Users $iduser): static
+    public function setIduser(?Users $iduser): static
     {
-        if (!$this->iduser->contains($iduser)) {
-            $this->iduser->add($iduser);
-        }
-
-        return $this;
-    }
-
-    public function removeIduser(Users $iduser): static
-    {
-        $this->iduser->removeElement($iduser);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, BingoGrid>
-     */
-    public function getIdgrid(): Collection
-    {
-        return $this->idgrid;
-    }
-
-    public function addIdgrid(BingoGrid $idgrid): static
-    {
-        if (!$this->idgrid->contains($idgrid)) {
-            $this->idgrid->add($idgrid);
-        }
-
-        return $this;
-    }
-
-    public function removeIdgrid(BingoGrid $idgrid): static
-    {
-        $this->idgrid->removeElement($idgrid);
+        $this->iduser = $iduser;
 
         return $this;
     }
