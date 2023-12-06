@@ -4,8 +4,16 @@
 
 {% block body %}
     <h1>Create new BingoGrid</h1>
-
-    {{ include('bingo_grid/_form.html.twig') }}
+    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN_1')%}
+        {{ include('bingo_grid/_form.html.twig') }}
+    {% else %}
+        <li class="navitem">
+            <button><a href="{{ path('app_login') }}">Connexion</a></button>
+        </li>
+        <li class="navitem">
+            <button><a href="{{ path('app_register') }}">Inscription</a></button>
+        </li>
+    {% endif %}
 
     <a href="{{ path('app_bingo_grid_index') }}">back to list</a>
 {% endblock %}

@@ -11,9 +11,10 @@ class BingoGrid2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $locale = $options['idUsr'];
         $builder
             ->add('gridname')
-            ->add('idUser')
+    
         ;
     }
 
@@ -21,6 +22,8 @@ class BingoGrid2Type extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => BingoGrid::class,
+            'idUsr'=> null,
+
         ]);
     }
 }

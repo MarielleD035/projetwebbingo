@@ -30,6 +30,17 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_bingo_grid_new') }}">Create new</a>
+    {% if is_granted('ROLE_USER') or is_granted('ROLE_SUPER_ADMIN_1')%}
+        <a href="{{ path('app_bingo_grid_new') }}">Create new</a>
+    {% else %}
+        <li class="navitem">
+            <button><a href="{{ path('app_login') }}">Connexion</a></button>
+        </li>
+        <li class="navitem">
+            <button><a href="{{ path('app_register') }}">Inscription</a></button>
+        </li>
+    {% endif %}
+    <li class="navitem">
+        <button><a href="{{ path('main') }}">Home page</a></button>
+    </li>
 {% endblock %}

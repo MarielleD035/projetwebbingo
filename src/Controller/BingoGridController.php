@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\BingoGrid;
+use App\Entity\Users;
 use App\Form\BingoGrid2Type;
 use App\Repository\BingoGridRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 #[Route('/bingo/grid')]
 class BingoGridController extends AbstractController
@@ -23,11 +26,15 @@ class BingoGridController extends AbstractController
     }
 
     #[Route('/new', name: 'app_bingo_grid_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, #[CurrentUser] Users $user): Response
     {
+        $current_user = $user->getId();
         $bingoGrid = new BingoGrid();
+        $bingoGrid->setIdUser($user);
         $form = $this->createForm(BingoGrid2Type::class, $bingoGrid);
+        
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($bingoGrid);
