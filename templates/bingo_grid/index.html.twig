@@ -10,7 +10,6 @@
             <tr>
                 <th>Id</th>
                 <th>Gridname</th>
-                <th>Cote</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,7 +18,6 @@
             <tr>
                 <td>{{ bingo_grid.id }}</td>
                 <td>{{ bingo_grid.gridname }}</td>
-                <td>{{ bingo_grid.cote }}</td>
                 <td>
                     <a href="{{ path('app_bingo_grid_show', {'id': bingo_grid.id}) }}">show</a>
                     <a href="{{ path('app_bingo_grid_edit', {'id': bingo_grid.id}) }}">edit</a>
@@ -27,7 +25,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="3">no records found</td>
             </tr>
         {% endfor %}
         </tbody>

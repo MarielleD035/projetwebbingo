@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -29,6 +31,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\OneToMany(mappedBy: 'idUser', targetEntity: BingoGrid::class)]
+    private Collection $bingoGrids;
+
+    public function __construct()
+    {
+        $this->bingoGrids = new ArrayCollection();
+    }
+    public function __toString(): string
+    {
+        return (string) $this->id;
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -97,5 +111,34 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, BingoGrid>
+     */
+    public function getBingoGrids(): Collection
+    {
+        return $this->bingoGrids;
+    }
+
+    public function addBingoGrid(BingoGrid $bingoGrid): static
+    {
+        if (!$this->bingoGrids->contains($bingoGrid)) {
+            $this->bingoGrids->add($bingoGrid);
+            $bingoGrid->setIdUser($this);
+        }
+        return $this;
+    }
+
+    public function removeBingoGrid(BingoGrid $bingoGrid): static
+    {
+        if ($this->bingoGrids->removeElement($bingoGrid)) {
+            // set the owning side to null (unless already changed)
+            if ($bingoGrid->getIdUser() === $this) {
+                $bingoGrid->setIdUser(null);
+            }
+        }
+
+        return $this;
     }
 }

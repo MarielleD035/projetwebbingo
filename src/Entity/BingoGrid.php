@@ -16,12 +16,11 @@ class BingoGrid
     #[ORM\Column(length: 255)]
     private ?string $gridname = null;
 
-    #[ORM\Column]
-    private ?int $cote = null;
-
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'bingoGrids')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Users $iduser = null;
+    private ?Users $idUser = null;
+
+
 
     public function getId(): ?int
     {
@@ -40,27 +39,15 @@ class BingoGrid
         return $this;
     }
 
-    public function getCote(): ?int
+    public function getIdUser(): ?Users
     {
-        return $this->cote;
+        return $this->idUser;
     }
-
-    public function setCote(int $cote): static
+    
+    public function setIdUser(?Users $idUser): static
     {
-        $this->cote = $cote;
-
-        return $this;
-    }
-
-    public function getIduser(): ?Users
-    {
-        return $this->iduser;
-    }
-
-    public function setIduser(?Users $iduser): static
-    {
-        $this->iduser = $iduser;
-
+        $this->idUser = $idUser;
+    
         return $this;
     }
 }
