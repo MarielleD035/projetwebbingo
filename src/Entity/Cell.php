@@ -22,9 +22,10 @@ class Cell
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $content = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?BingoGrid $idgrid = null;
+    #[ORM\ManyToOne(inversedBy: 'cells')]
+    private ?BingoGrid $bingoGrid = null;
+
+
 
     public function getId(): ?int
     {
@@ -67,15 +68,16 @@ class Cell
         return $this;
     }
 
-    public function getIdgrid(): ?BingoGrid
+    public function getBingoGrid(): ?BingoGrid
     {
-        return $this->idgrid;
+        return $this->bingoGrid;
     }
 
-    public function setIdgrid(?BingoGrid $idgrid): static
+    public function setBingoGrid(?BingoGrid $bingoGrid): static
     {
-        $this->idgrid = $idgrid;
+        $this->bingoGrid = $bingoGrid;
 
         return $this;
     }
+
 }

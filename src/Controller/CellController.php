@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cell;
-use App\Form\CellType;
+use App\Form\Cell1Type;
 use App\Repository\CellRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +26,7 @@ class CellController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $cell = new Cell();
-        $form = $this->createForm(CellType::class, $cell);
+        $form = $this->createForm(Cell1Type::class, $cell);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,7 @@ class CellController extends AbstractController
     #[Route('/{id}/edit', name: 'app_cell_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Cell $cell, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CellType::class, $cell);
+        $form = $this->createForm(Cell1Type::class, $cell);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
