@@ -29,12 +29,15 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            if ($user->isisActif()){
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('main');
+            }else{
+                return $this->redirectToRoute('main');
+            }
         }
 
         return $this->render('registration/register.html.twig', [

@@ -37,6 +37,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'iduser', targetEntity: MakeAccess::class)]
     private Collection $makeAccesses;
 
+    #[ORM\Column]
+    private ?bool $isActif = null;
+
 
 
     public function __construct()
@@ -176,6 +179,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
                 $makeAccess->setIduser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsActif(): ?bool
+    {
+        return $this->isActif;
+    }
+
+    public function setIsActif(bool $isActif): static
+    {
+        $this->isActif = $isActif;
 
         return $this;
     }
