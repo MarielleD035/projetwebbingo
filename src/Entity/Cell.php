@@ -14,7 +14,7 @@ class Cell
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $coordX = null;
+    private ?int $coordX = null;
 
     #[ORM\Column]
     private ?int $coordY = null;
@@ -22,17 +22,22 @@ class Cell
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $content = null;
 
+    #[ORM\ManyToOne(inversedBy: 'cells')]
+    private ?BingoGrid $bingoGrid = null;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCoordX(): ?string
+    public function getCoordX(): ?int
     {
         return $this->coordX;
     }
 
-    public function setCoordX(string $coordX): static
+    public function setCoordX(int $coordX): static
     {
         $this->coordX = $coordX;
 
@@ -62,4 +67,17 @@ class Cell
 
         return $this;
     }
+
+    public function getBingoGrid(): ?BingoGrid
+    {
+        return $this->bingoGrid;
+    }
+
+    public function setBingoGrid(?BingoGrid $bingoGrid): static
+    {
+        $this->bingoGrid = $bingoGrid;
+
+        return $this;
+    }
+
 }
