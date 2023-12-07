@@ -12,6 +12,7 @@
                 <th>Email</th>
                 <th>Roles</th>
                 <th>IsActif</th>
+                <th>profile picture
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.isActif ? 'Yes' : 'No' }}</td>
+                <td>{{user.profilePicture}}</td>
                 <td>
                     <a href="{{ path('app_users_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>

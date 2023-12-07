@@ -9,8 +9,9 @@ use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-
-
+use App\Entity\BingoGrid;
+use App\Form\BingoGrid3Type;
+use App\Repository\BingoGridRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -65,6 +66,13 @@ class DashboardController extends AbstractDashboardController
     {
         return $this->render('message/index.html.twig', [
             'messages' => $messageRepository->findAll(),
+        ]);
+    }
+    #[Route('/grid', name: 'app_bingo_grid_admin', methods: ['GET'])]
+    public function grid(BingoGridRepository $bingoGridRepository): Response
+    {
+        return $this->render('bingo_grid/index.html.twig', [
+            'bingo_grids' => $bingoGridRepository->findAll(),
         ]);
     }
 

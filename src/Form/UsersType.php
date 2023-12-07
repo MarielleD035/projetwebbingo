@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 
 class UsersType extends AbstractType
@@ -17,7 +19,12 @@ class UsersType extends AbstractType
             ->add('email')
             ->add('roles')
             ->add('isActif')
-        ;
+            ->add('profilePicture', FileType::class, [
+                'mapped' => false, 
+                'label'  => 'profile picture ( image )'  
+                ])
+            ->add('password')
+            ;
         $builder->get('roles')
         ->addModelTransformer(new CallbackTransformer(
             function ($tagsAsArray): string {
