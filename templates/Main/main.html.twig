@@ -6,21 +6,27 @@
     <header>
         <h1>WEBINGO</h1>
         <nav>
-            <ul>
-                <li>
-                    <button><a href="#">Grilles publiques</a></button>
+            <ul class="navul">
+                <li class="navitem">
+                    <button><a href="{{ path('app_bingo_grid_index')}}">Grilles publiques</a></button>
                 </li>
                 {% if is_granted('ROLE_USER') %}
-                    <li>
-                        <a class="nav-link" href="#">Déconnexion</a>
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
                     </li>
                 {% else %}
-                    <li>
-                        <a href="#">Connexion</a>
-                        <a href="#">Inscription</a></li>
+                    <li class="navitem">
+                        <button><a href="{{ path('app_login') }}">Connexion</a></button>
+                    </li>
+                    <li class="navitem">
+                        <button><a href="{{ path('app_register') }}">Inscription</a></button>
+                    </li>
                 {% endif %}
+                <li class="navitem">
+                        <button><a href="{{ path('app_message_new') }}">message</a></button>
+                    </li>
                 {% if is_granted('ROLE_SUPER_ADMIN_1') %}
-                    <li>
+                    <li class="navitem">
                         <a class="nav-link" href="{{ path('show_dash') }}">Administration</a>
                     </li>
                 {% endif %}

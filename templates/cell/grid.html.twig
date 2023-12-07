@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cell index{% endblock %}
+
+{% block body %}
+    <h1>Cell index</h1>
+
+    <table class="table">
+        <tbody>
+        <table border="1">
+        {% for i in 1..5 %}
+            <tr>
+                {% for j in 1..5 %}
+                    <td>
+                        {% for cell in cells %}
+                            {% if cell.coordX == i and cell.coordY == j %}
+                                {{ cell.content }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
