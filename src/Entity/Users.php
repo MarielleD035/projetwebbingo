@@ -38,7 +38,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $makeAccesses;
 
     #[ORM\Column]
-    private ?bool $isActif = null;
+    private ?bool $isActif = TRUE;
 
 
 
