@@ -6,6 +6,8 @@ use App\Entity\Message;
 use App\Controller\MessageController;
 use App\Form\MessageType;
 use App\Repository\MessageRepository;
+use App\Repository\UsersRepository;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,6 +69,14 @@ class DashboardController extends AbstractDashboardController
             'messages' => $messageRepository->findAll(),
         ]);
     }
+    #[Route('/user', name: 'app_user_admin', methods: ['GET'])]
+    public function user(UsersRepository $userRepository): Response
+    {
+        return $this->render('admin/adminUser.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
+    }
+    
 
     public function configureDashboard(): Dashboard
     {
