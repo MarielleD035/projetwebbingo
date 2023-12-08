@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BingoGrid{% endblock %}
+
+{% block body %}
+    <h1>BingoGrid</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bingo_grid.id }}</td>
+            </tr>
+            <tr>
+                <th>Gridname</th>
+                <td>{{ bingo_grid.gridname }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bingo_grid_index') }}">back to list</a>
+
+    <a href="{{ path('app_bingo_grid_edit', {'id': bingo_grid.id}) }}">edit</a>
+
+    {{ include('bingo_grid/_delete_form.html.twig') }}
+{% endblock %}

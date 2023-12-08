@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <header>
+        <h1>WEBINGO</h1>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
+                </li>
+                {% if is_granted('ROLE_USER') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
+                    </li>
+                {% else %}
+                    <li class="navitem">
+                        <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+                    </li>
+                {% endif %}
+                <li class="navitem">
+                    <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                </li>
+                {% if is_granted('ROLE_SUPER_ADMIN_1') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ path('show_dash') }}"><button>Administration</button></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="sectionconnexionpage">
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                <h2 class="h3 mb-3 font-weight-normal">Please sign in</h2>
+                <div class="connectioncontentform">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                    <label for="inputPassword">Password</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    <button class="btunconnection" type="submit">
+                        Sign in
+                    </button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+    </footer>
+{% endblock %}

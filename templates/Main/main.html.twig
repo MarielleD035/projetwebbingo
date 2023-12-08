@@ -6,22 +6,28 @@
     <header>
         <h1>WEBINGO</h1>
         <nav>
-            <ul>
-                <li>
-                    <button><a href="#">Grilles publiques</a></button>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
                 </li>
                 {% if is_granted('ROLE_USER') %}
-                    <li>
-                        <a class="nav-link" href="#">Déconnexion</a>
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
                     </li>
                 {% else %}
-                    <li>
-                        <a href="#">Connexion</a>
-                        <a href="#">Inscription</a></li>
+                    <li class="navitem">
+                        <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+                    </li>
                 {% endif %}
-                {% if is_granted('ROLE_SUPER_ADMIN_1') %}
-                    <li>
-                        <a class="nav-link" href="{{ path('show_dash') }}">Administration</a>
+                <li class="navitem">
+                        <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                    </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
                     </li>
                 {% endif %}
             </ul>
@@ -29,10 +35,13 @@
     </header>
 
     <main>
-        <h2>Webingo, c'est quoi ?</h2>
-        <p>Très bonne question, Fred.</p>
-        <p>Peut-être connaissez-vous le site Tiermaker ou même le jeu classique du bingo, celui-là même où nous sommes face à une grille tirée au hasard avec des nombres qui seront criés par un animateur de soirée un peu désuètes et où, si vous complétez en premier une ligne, une colonne ou une diagonale, vous devez cirer "BINGO" pour espérer gagner un lot.</p>
-        <p>Mais ici, il s'agit de la version modernisée de ce jeu. Face à un événement (par exemple, un discours de Macron pendant une certaine pandémie), certains se sont amusés à créer des grilles avec des éléments de langages qu'ils pressentaient pouvoir sortir de la bouche de Mr le Président. Nous, on pousse le vice encore plus loin, puisuq'on vous propose un outil pour créer ces grilles merveilleuses et absolument chaotiques. </p>
+        <section id="sectionmainpage">
+            <h2>Webingo, c'est quoi ?</h2>
+            <p>Très bonne question, Fred.</p>
+            <p>Peut-être connaissez-vous le site Tiermaker ou même le jeu classique du bingo, celui-là même où nous sommes face à une grille tirée au hasard avec des nombres qui seront criés par un animateur de soirée un peu désuètes et où, si vous complétez en premier une ligne, une colonne ou une diagonale, vous devez cirer "BINGO" pour espérer gagner un lot.</p>
+            <p>Mais ici, il s'agit de la version modernisée de ce jeu. Face à un événement (par exemple, un discours de Macron pendant une certaine pandémie), certains se sont amusés à créer des grilles avec des éléments de langages qu'ils pressentaient pouvoir sortir de la bouche de Mr le Président. Nous, on pousse le vice encore plus loin, puisuq'on vous propose un outil pour créer ces grilles merveilleuses et absolument chaotiques. </p>
+
+        </section>
     </main>
 
     <footer>

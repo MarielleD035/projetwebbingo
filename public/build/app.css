@@ -1,0 +1,30 @@
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[1].use[1]!./assets/styles/app.css ***!
+  \**************************************************************************************************************/
+body {
+    background-color: #1A3840 ;
+    color: #fff ;
+    font-family: Verdana, serif;
+}
+
+header {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(60deg, #E36684, #007FBE );
+}
+
+h1 {
+    margin-left: 20px;
+}
+
+.navul {
+    display: flex;
+    list-style: none;
+}
+
+.navitem {
+    padding-right: 20px;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7QUFBQTtJQUNJLDBCQUEwQjtJQUMxQixZQUFZO0lBQ1osMkJBQTJCO0FBQy9COztBQUVBO0lBQ0ksWUFBWTtJQUNaLG1CQUFtQjtJQUNuQiw4QkFBOEI7SUFDOUIscURBQXFEO0FBQ3pEOztBQUVBO0lBQ0ksaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLGdCQUFnQjtBQUNwQjs7QUFFQTtJQUNJLG1CQUFtQjtBQUN2QixDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYXNzZXRzL3N0eWxlcy9hcHAuY3NzIl0sInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzFBMzg0MCA7XHJcbiAgICBjb2xvcjogI2ZmZiA7XHJcbiAgICBmb250LWZhbWlseTogVmVyZGFuYSwgc2VyaWY7XHJcbn1cclxuXHJcbmhlYWRlciB7XHJcbiAgICBkaXNwbGF5OmZsZXg7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gICAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KDYwZGVnLCAjRTM2Njg0LCAjMDA3RkJFICk7XHJcbn1cclxuXHJcbmgxIHtcclxuICAgIG1hcmdpbi1sZWZ0OiAyMHB4O1xyXG59XHJcblxyXG4ubmF2dWwge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGxpc3Qtc3R5bGU6IG5vbmU7XHJcbn1cclxuXHJcbi5uYXZpdGVtIHtcclxuICAgIHBhZGRpbmctcmlnaHQ6IDIwcHg7XHJcbn0iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=*/
