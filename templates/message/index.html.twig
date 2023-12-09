@@ -3,39 +3,113 @@
 {% block title %}Message index{% endblock %}
 
 {% block body %}
-    <h1>Message index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Mail</th>
-                <th>Nom</th>
-                <th>Objet</th>
-                <th>Message</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for message in messages %}
-            <tr>
-                <td>{{ message.id }}</td>
-                <td>{{ message.mail }}</td>
-                <td>{{ message.nom }}</td>
-                <td>{{ message.Objet }}</td>
-                <td>{{ message.message }}</td>
-                <td>
-                    <a href="{{ path('app_message_show', {'id': message.id}) }}">show</a>
-                    <a href="{{ path('app_message_edit', {'id': message.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+    <header>
+        <a class="homepagelink" href="{{ path('main')}}"><h1>ADMIN</h1></a>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Admin</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('main') }}"><button>Homepage</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="./message"><button>Messages</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="./grid"><button>Grilles</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_users_index') }}"><button>user</button></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <a href="{{ path('app_message_new') }}">Create new</a>
+    <main>
+        <section id="messageadminview">
+            <h2>Messages</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Mail</th>
+                    <th>Nom</th>
+                    <th>Objet</th>
+                    <th>Message</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for message in messages %}
+                    <tr>
+                        <td>{{ message.id }}</td>
+                        <td>{{ message.mail }}</td>
+                        <td>{{ message.nom }}</td>
+                        <td>{{ message.Objet }}</td>
+                        <td>{{ message.message }}</td>
+                        <td>
+                            <a href="{{ path('app_message_show', {'id': message.id}) }}"><button class="commonbtn">show</button></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+
+
+    <footer>
+
+    </footer>
+    {% else %}
+
+        <header>
+            <a class="homepagelink" href="{{ path('main')}}"><h1>WEBINGO</h1></a>
+            <nav>
+                <ul class="navul">
+                    <li class="navitem">
+                        <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
+                    </li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="navitem">
+                            <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
+                        </li>
+                    {% else %}
+                        <li class="navitem">
+                            <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                        </li>
+                        <li class="navitem">
+                            <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+                        </li>
+                    {% endif %}
+                    <li class="navitem">
+                        <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="navitem">
+                            <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="sectionpagemessagenew">
+                <h2>ERROR 403 : FORBIDDEN ACCESS</h2>
+
+            </section>
+        </main>
+        <footer>
+            <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+        </footer>
+
+    {% endif %}
 {% endblock %}

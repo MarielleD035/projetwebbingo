@@ -1,20 +1,40 @@
 {% extends 'base.html.twig' %}
 
         {% block body %}
-        <h1>Admin</h1>
-        <li class="navitem">
-            <button><a href="{{ path('main') }}">Home page</a></button>
-        </li>
-        <li class="navitem">
-            <button><a href="./message">message</a></button>
-        </li>
-        <li class="navitem">
-            <button><a href="{{ path('app_users_index') }}">user</a></button>
-        </li>
-        <li class="navitem">
-            <button><a href="./grid">grid</a></button>
-        </li>
+            <header>
+                <a class="homepagelink" href="{{ path('main')}}"><h1>ADMIN</h1></a>
+                <nav>
+                    <ul class="navul">
+                        <li class="navitem">
+                            <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Grilles publiques</button></a>
+                        </li>
+                        <li class="navitem">
+                            <a href="{{ path('main') }}"><button>Homepage</button></a>
+                        </li>
+                        <li class="navitem">
+                            <a href="./message"><button>Messages</button></a>
+                        </li>
+                        <li class="navitem">
+                            <a href="./grid"><button>Grilles</button></a>
+                        </li>
+                        <li class="navitem">
+                            <a href="{{ path('app_users_index') }}"><button>user</button></a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
 
+            <main>
+                <section id="sectionmainpage">
+                    <h2>DASHBOARD ADMIN</h2>
+                    <p>Manage the users, the grids from here.</p>
+
+                </section>
+            </main>
+
+            <footer>
+
+            </footer>
 
         {% endblock %}
 

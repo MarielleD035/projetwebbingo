@@ -66,6 +66,27 @@ h2 {
     color: #da60cc
 }
 
+.commonbtn {
+    background:none;
+    border: 2px solid white;
+    padding: 5px;
+    color:white;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor:pointer;
+}
+
+.commonbtn:hover {
+    background:none;
+    border: 2px solid #007FBE ;
+    padding: 5px;
+    color:#007FBE ;
+    text-decoration: underline;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor:pointer;
+}
+
 /* CSS Page d'accueil */
 
 #sectionmainpage {
@@ -150,3 +171,21 @@ h2 {
     border-radius: 5px;
 }
 
+/*
+*
+* PARTIE ADMIN
+*
+ */
+
+#messageadminview th {
+    padding: 8px;
+    border: 1px solid white;
+}
+
+#messageadminview td {
+    text-align: center;
+}
+
+#messageadminview {
+    padding-left: 30px;
+}

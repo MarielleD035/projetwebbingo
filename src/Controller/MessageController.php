@@ -15,7 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class MessageController extends AbstractController
 {
 
+    #[Route('/', name: 'app_message_index', methods: ['GET'])]
+    public function index(MessageRepository $messageRepository): Response
+    {
 
+        return $this->render('message/index.html.twig', [
+            'messages' => $messageRepository->findAll(),
+        ]);
+    }
 
     #[Route('/new', name: 'app_message_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
