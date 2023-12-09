@@ -3,12 +3,14 @@
 {% block title %}Message index{% endblock %}
 
 {% block body %}
+
+    {% if is_granted('ROLE_ADMIN') %}
     <header>
         <a class="homepagelink" href="{{ path('main')}}"><h1>ADMIN</h1></a>
         <nav>
             <ul class="navul">
                 <li class="navitem">
-                    <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Grilles publiques</button></a>
+                    <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Admin</button></a>
                 </li>
                 <li class="navitem">
                     <a href="{{ path('main') }}"><button>Homepage</button></a>
@@ -67,4 +69,47 @@
     <footer>
 
     </footer>
+    {% else %}
+
+        <header>
+            <a class="homepagelink" href="{{ path('main')}}"><h1>WEBINGO</h1></a>
+            <nav>
+                <ul class="navul">
+                    <li class="navitem">
+                        <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
+                    </li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="navitem">
+                            <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
+                        </li>
+                    {% else %}
+                        <li class="navitem">
+                            <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                        </li>
+                        <li class="navitem">
+                            <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+                        </li>
+                    {% endif %}
+                    <li class="navitem">
+                        <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="navitem">
+                            <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="sectionpagemessagenew">
+                <h2>ERROR 403 : FORBIDDEN ACCESS</h2>
+
+            </section>
+        </main>
+        <footer>
+            <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+        </footer>
+
+    {% endif %}
 {% endblock %}
