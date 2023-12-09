@@ -42,7 +42,7 @@
                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"><button class="btunconnection">Logout</button></a>
                </div>
            {% else %}
-                <form class="connectioncontentform">
+                <div class="connectioncontentform">
                     {{ form_errors(registrationForm) }}
 
                     {{ form_start(registrationForm) }}
@@ -55,7 +55,7 @@
 
                     <button type="submit" class="btunconnection">Register</button>
                     {{ form_end(registrationForm) }}
-                </form>
+                </div>
            {% endif %}
        </section>
    </main>
