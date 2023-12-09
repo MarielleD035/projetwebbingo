@@ -3,18 +3,63 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <header>
+        <h1>WEBINGO</h1>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
+                </li>
+                {% if is_granted('ROLE_USER') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
+                    </li>
+                {% else %}
+                    <li class="navitem">
+                        <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+                    </li>
+                {% endif %}
+                <li class="navitem">
+                    <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
-    {{ form_errors(registrationForm) }}
+   <main>
+       <section id="pageregister">
+           <h2>Register</h2>
+           {% if app.user %}
+               <div class="mb-3">
+                   You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"><button class="btunconnection">Logout</button></a>
+               </div>
+           {% else %}
+                <form class="connectioncontentform">
+                    {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-        {{ form_row(registrationForm.pp) }}
+                    {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    {{ form_row(registrationForm.pp) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                    <button type="submit" class="btunconnection">Register</button>
+                    {{ form_end(registrationForm) }}
+                </form>
+           {% endif %}
+       </section>
+   </main>
+    <footer>
+        <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+    </footer>
 {% endblock %}

@@ -25,9 +25,9 @@
                 <li class="navitem">
                     <a href="{{ path('app_message_new') }}"><button>message</button></a>
                 </li>
-                {% if is_granted('ROLE_SUPER_ADMIN_1') %}
+                {% if is_granted('ROLE_ADMIN') %}
                     <li class="navitem">
-                        <a class="nav-link" href="{{ path('show_dash') }}"><button>Administration</button></a>
+                        <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
                     </li>
                 {% endif %}
             </ul>
@@ -40,14 +40,15 @@
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
-                {% if app.user %}
-                    <div class="mb-3">
-                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-                    </div>
-                {% endif %}
+
 
                 <h2 class="h3 mb-3 font-weight-normal">Please sign in</h2>
                 <div class="connectioncontentform">
+                    {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"><button class="btunconnection">Logout</button></a>
+                    </div>
+                    {% else %}
                     <label for="inputEmail">Email</label>
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
                     <label for="inputPassword">Password</label>
@@ -61,7 +62,7 @@
                         Sign in
                     </button>
                 </div>
-
+                {% endif %}
             </form>
         </section>
     </main>

@@ -52,6 +52,7 @@ footer {
     width:100%;
     padding-left: 3rem;
     background: linear-gradient(60deg, #125B8E , #AF498A  );
+    text-align: center;
 }
 
 h2 {
@@ -70,10 +71,6 @@ h2 {
 #sectionconnexionpage {
     display:flex;
     justify-content: center;
-}
-
-#sectionconnexionpage form {
-
 }
 
 .connectioncontentform {
@@ -106,3 +103,43 @@ h2 {
     color: #007FBE;
     border: 2px solid #007FBE;
 }
+
+/* CSS Page Register */
+
+#pageregister {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*
+*
+* CSS MESSAGES
+*
+*/
+
+/* CSS New message */
+
+#sectionpagemessagenew {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formmessagenew {
+    display:flex;
+    flex-direction: column;
+    font-size: 16px;
+    border: 3px solid #E36684 ;
+    padding: 20px;
+}
+
+.forminput {
+    margin-bottom: 10px;
+    color: white;
+    background:none;
+    border: 2px solid #007FBE;
+    padding:3px;
+    border-radius: 5px;
+}
+
