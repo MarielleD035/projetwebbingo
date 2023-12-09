@@ -1,4 +1,23 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div>
+    {{ form_errors(form) }}
+</div>
+<div>
+    {{ form_label(form.mail, 'Votre mail : ') }}
+    {{ form_widget(form.mail, {'attr': {'class': 'forminput'}}) }}
+</div>
+<div>
+    {{ form_label(form.nom, 'Votre nom : ') }}
+    {{ form_widget(form.nom, {'attr': {'class': 'forminput'}}) }}
+</div>
+<div>
+    {{ form_label(form.Objet, 'Votre objet : ') }}
+    {{ form_widget(form.Objet, {'attr': {'class': 'forminput'}}) }}
+</div>
+<div>
+    {{ form_label(form.message, 'Votre message : ') }}
+    {{ form_widget(form.message, {'attr': {'class': 'forminput'}}) }}
+</div>
+<button class="btunconnection">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
