@@ -11,8 +11,15 @@ header {
     background: linear-gradient(60deg, #AF498A , #125B8E  );
 }
 
+.homepagelink {
+    text-decoration: none;
+    color:white;
+}
+
 h1 {
     margin-left: 30px;
+    text-decoration: none;
+    color:white;
 }
 
 .navul {
