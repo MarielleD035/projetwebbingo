@@ -25,9 +25,9 @@
                 <li class="navitem">
                     <a href="{{ path('app_message_new') }}"><button>message</button></a>
                 </li>
-                {% if is_granted('ROLE_SUPER_ADMIN_1') %}
+                {% if is_granted('ROLE_ADMIN') %}
                     <li class="navitem">
-                        <a class="nav-link" href="{{ path('show_dash') }}"><button>Administration</button></a>
+                        <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
                     </li>
                 {% endif %}
             </ul>
