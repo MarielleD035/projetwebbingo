@@ -111,3 +111,17 @@ h2 {
     align-items: center;
 }
 
+/*
+*
+* CSS MESSAGES
+*
+*/
+
+/* CSS New message */
+
+#sectionpagemessagenew {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+

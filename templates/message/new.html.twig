@@ -3,9 +3,47 @@
 {% block title %}New Message{% endblock %}
 
 {% block body %}
-    <h1>Create new Message</h1>
+    <header>
+        <h1>WEBINGO</h1>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
+                </li>
+                {% if is_granted('ROLE_USER') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
+                    </li>
+                {% else %}
+                    <li class="navitem">
+                        <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+                    </li>
+                {% endif %}
+                <li class="navitem">
+                    <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
-    {{ include('message/_form.html.twig') }}
+    <main>
+        <section id="sectionpagemessagenew">
+            <h2>Contact us</h2>
+            <form>
+                {{ include('message/_form.html.twig') }}
+            </form>
+        </section>
+    </main>
 
-    <a href="{{ path('main') }}">back to list</a>
+    <footer>
+        <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+    </footer>
 {% endblock %}
