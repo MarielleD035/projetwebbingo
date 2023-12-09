@@ -1,3 +1,4 @@
+
 security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -38,7 +39,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/admin, roles: ROLE_MOD }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/users, roles: ROLE_ADMIN }
 
         # - { path: ^/profile, roles: ROLE_USER }

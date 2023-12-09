@@ -37,3 +37,4 @@ final class Version20231206002511 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_CB8787E2F3F53AFB ON cell (idgrid_id)');
     }
 }
+
