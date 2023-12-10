@@ -197,11 +197,12 @@ h2 {
 
 #messageadminview th, #useradminview th {
     padding: 8px;
-    border: 1px solid white;
+    border: 2px solid white;
 }
 
 #messageadminview td, #useradminview td {
     text-align: center;
+    border: 1px dotted #125B8E  ;
 }
 
 #messageadminview tr, #useradminview tr {
@@ -219,16 +220,17 @@ h2 {
     align-items: center;
 }
 
-#swhomessagepage tr {
+#swhomessagepage tr, #showuseradmin tr {
     width: 500px;
     max-height: 500px;
 }
 
 .tableau {
     width:50%;
+
 }
 
-#swhomessagepage th {
+#swhomessagepage th, #showuseradmin th {
     padding: 8px;
     border: 1px solid white;
 }

@@ -30,31 +30,33 @@
         <section id="swhomessagepage">
             <h2>{{ message.Objet }}</h2>
 
-            <table class="tableau">
-                <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ message.id }}</td>
-                </tr>
-                <tr>
-                    <th>Mail</th>
-                    <td>{{ message.mail }}</td>
-                </tr>
-                <tr>
-                    <th>Nom</th>
-                    <td>{{ message.nom }}</td>
-                </tr>
-                <tr>
-                    <th>Objet</th>
-                    <td>{{ message.Objet }}</td>
-                </tr>
-                <tr style="max-height: 500px">
-                    <th>Message</th>
-                    <td><p>{{ message.message }}</p></td>
-                </tr>
-                </tbody>
-            </table>
-            {{ include('message/_delete_form.html.twig') }}
+            <div class="redborder">
+                <table class="tableau">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ message.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mail</th>
+                        <td>{{ message.mail }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ message.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Objet</th>
+                        <td>{{ message.Objet }}</td>
+                    </tr>
+                    <tr style="max-height: 500px">
+                        <th>Message</th>
+                        <td><p>{{ message.message }}</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                {{ include('message/_delete_form.html.twig') }}
+            </div>
 
             <a href="{{ path('app_message_index') }}"><button class="commonbtn">Back to index</button></a>
 
