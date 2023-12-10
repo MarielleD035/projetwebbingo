@@ -29,6 +29,7 @@ class CellController extends AbstractController
         $cell = $cellRepository->findBy(['bingoGrid'=>$bingoGrid], );
         return $this->render('cell/grid.html.twig', [
             'cells' => $cell,
+            'bingogrid' => $bingoGrid,
         ]);
 
     }
