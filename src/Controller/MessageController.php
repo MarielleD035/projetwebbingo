@@ -52,24 +52,6 @@ class MessageController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_message_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Message $message, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(MessageType::class, $message);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_message_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('message/edit.html.twig', [
-            'message' => $message,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_message_delete', methods: ['POST'])]
     public function delete(Request $request, Message $message, EntityManagerInterface $entityManager): Response
     {

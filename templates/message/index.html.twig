@@ -6,7 +6,7 @@
 
     {% if is_granted('ROLE_ADMIN') %}
     <header>
-        <a class="homepagelink" href="{{ path('main')}}"><h1>ADMIN</h1></a>
+        <a class="homepagelink" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController')}}"><h1>ADMIN</h1></a>
         <nav>
             <ul class="navul">
                 <li class="navitem">

@@ -74,6 +74,7 @@ h2 {
     border-radius: 10px;
     font-size: 16px;
     cursor:pointer;
+    margin: 10px;
 }
 
 .commonbtn:hover {
@@ -171,6 +172,8 @@ h2 {
     border-radius: 5px;
 }
 
+
+
 /*
 *
 * PARTIE ADMIN
@@ -186,6 +189,31 @@ h2 {
     text-align: center;
 }
 
+#messageadminview tr {
+    width:500px;
+}
+
 #messageadminview {
     padding-left: 30px;
+    text-align: center;
+}
+
+#swhomessagepage {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#swhomessagepage tr {
+    width: 500px;
+    max-height: 500px;
+}
+
+.tableau {
+    width:50%;
+}
+
+#swhomessagepage th {
+    padding: 8px;
+    border: 1px solid white;
 }
