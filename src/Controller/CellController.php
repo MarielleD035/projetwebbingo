@@ -27,24 +27,33 @@ class CellController extends AbstractController
     public function grid(Request $request, EntityManagerInterface $entityManager, CellRepository $cellRepository, BingoGrid $bingoGrid ): Response
     {
         $cell = $cellRepository->findBy(['bingoGrid'=>$bingoGrid], );
-        return $this->render('cell/grid.html.twig', [
-            'cells' => $cell,
-        ]);
-
+        if (is_null($cell)) {
+            return $this->render('cell/grid.html.twig', [
+                'bingogrid' => $bingoGrid,
+            ]);
+        } else {
+            return $this->render('cell/grid.html.twig', [
+                'cells' => $cell,
+                'bingogrid' => $bingoGrid,
+            ]);
+        }
     }
 
-    #[Route('/new', name: 'app_cell_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new/{id}/{coordX}/{coordY}', name: 'app_cell_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, BingoGrid $id, $coordX, $coordY): Response
     {
         $cell = new Cell();
         $form = $this->createForm(Cell1Type::class, $cell);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $cell->setCoordY($coordY);
+            $cell->setCoordX($coordX);
+            $cell->setBingoGrid($id);
             $entityManager->persist($cell);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_cell_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_cell_grid',  ['id' => $id->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('cell/new.html.twig', [
@@ -61,8 +70,8 @@ class CellController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_cell_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Cell $cell, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/edit/{gridid}/{coordX}/{coordY}', name: 'app_cell_edit', methods: ['GET', 'POST'])]
+    public function edit(BingoGrid $gridid, $coordX, $coordY, Request $request, Cell $cell, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(Cell1Type::class, $cell);
         $form->handleRequest($request);
@@ -70,7 +79,7 @@ class CellController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_cell_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_cell_grid',  ['id' => $gridid->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('cell/edit.html.twig', [

@@ -12,10 +12,7 @@ class Cell1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('coordX')
-            ->add('coordY')
             ->add('content')
-            ->add('bingoGrid')
         ;
     }
 

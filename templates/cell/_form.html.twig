@@ -1,4 +1,10 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div>
+    {{ form_errors(form) }}
+</div>
+<div>
+    {{ form_label(form.content, 'Content : ') }}
+    {{ form_widget(form.content, {'attr': {'class': 'forminput'}}) }}
+</div>
+<button class="btunconnection">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

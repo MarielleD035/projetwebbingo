@@ -3,9 +3,47 @@
 {% block title %}New Users{% endblock %}
 
 {% block body %}
-    <h1>Create new Users</h1>
+    <header>
+        <a class="homepagelink" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController')}}"><h1>ADMIN</h1></a>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Admin</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('main') }}"><button>Homepage</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_message_index') }}"><button>Messages</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index') }}"><button>Grilles</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_users_index') }}"><button>user</button></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>
+                Create user
+            </h2>
 
-    {{ include('users/_form.html.twig') }}
+            <div class="redborder">
+                {{ include('users/_form.html.twig') }}
+            </div>
+            <a href="{{ path('app_users_index') }}"><button class="commonbtn">back to list</button></a>
+        </section>
+    </main>
 
-    <a href="{{ path('app_users_index') }}">back to list</a>
+    <footer>
+
+
+    </footer>
+
+
+
+
 {% endblock %}

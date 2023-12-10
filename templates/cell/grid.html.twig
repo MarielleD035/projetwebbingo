@@ -3,29 +3,66 @@
 {% block title %}Cell index{% endblock %}
 
 {% block body %}
-    <h1>Cell index</h1>
+    <header>
+        <a class="homepagelink" href="{{ path('main')}}"><h1>WEBINGO</h1></a>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
+                </li>
+                {% if is_granted('ROLE_USER') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
+                    </li>
+                {% else %}
+                    <li class="navitem">
+                        <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+                    </li>
+                {% endif %}
+                <li class="navitem">
+                    <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
-    <table class="table">
-        <tbody>
-        <table border="1">
-        {% for i in 1..5 %}
-            <tr>
-                {% for j in 1..5 %}
-                    <td>
-                        {% for cell in cells %}
-                            {% if cell.coordX == i and cell.coordY == j %}
-                                {{ cell.content }}
-                            {% endif %}
-                        {% endfor %}
-                    </td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
+    <main>
+        <h2>{{ bingogrid.gridname }}</h2>
 
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table" style="border: 2px solid #553B84 ">
+            <tbody>
+            {% for i in 1..5 %}
+                <tr style="border: 2px solid #553B84 ">
+                    {% for j in 1..5 %}
+                        <td style="border: 2px solid #553B84 ">
+                                {% for cell in cells %}
+                                    {% if cell.coordX == i and cell.coordY == j %}
+                                        {{ cell.content }}
+                                        <a href="{{ path('app_cell_edit', {'id': cell.id, 'coordX': i, 'coordY': j, 'gridid': bingogrid })}}"><button class="btunconnection">Modifier la cases</button></a>
+                                    {% endif %}
+                                {% endfor %}
+                                <a href="{{ path('app_cell_new', {'id': bingogrid, "coordX": i, 'coordY': j })}}"><button class="btunconnection">Create la cases</button></a>
+
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('app_bingo_grid_index') }}"><button class="commonbtn">back to list</button></a>
+
+    </main>
+
+    <footer>
+        <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+    </footer>
+
 {% endblock %}

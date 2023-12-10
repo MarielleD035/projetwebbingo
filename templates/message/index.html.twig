@@ -6,7 +6,7 @@
 
     {% if is_granted('ROLE_ADMIN') %}
     <header>
-        <a class="homepagelink" href="{{ path('main')}}"><h1>ADMIN</h1></a>
+        <a class="homepagelink" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController')}}"><h1>ADMIN</h1></a>
         <nav>
             <ul class="navul">
                 <li class="navitem">
@@ -16,10 +16,10 @@
                     <a href="{{ path('main') }}"><button>Homepage</button></a>
                 </li>
                 <li class="navitem">
-                    <a href="./message"><button>Messages</button></a>
+                    <a href="{{ path('app_message_index') }}"><button>Messages</button></a>
                 </li>
                 <li class="navitem">
-                    <a href="./grid"><button>Grilles</button></a>
+                    <a href="{{ path('app_bingo_grid_index') }}"><button>Grilles</button></a>
                 </li>
                 <li class="navitem">
                     <a href="{{ path('app_users_index') }}"><button>user</button></a>

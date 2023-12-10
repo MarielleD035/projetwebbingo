@@ -4,32 +4,24 @@
 
 {% block body %}
     <header>
-        <a class="homepagelink" href="{{ path('main')}}"><h1>WEBINGO</h1></a>
+        <a class="homepagelink" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController')}}"><h1>ADMIN</h1></a>
         <nav>
             <ul class="navul">
                 <li class="navitem">
-                    <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
+                    <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Admin</button></a>
                 </li>
-                {% if is_granted('ROLE_USER') %}
-                    <li class="navitem">
-                        <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
-                    </li>
-                {% else %}
-                    <li class="navitem">
-                        <a href="{{ path('app_login') }}"><button>Connexion</button></a>
-                    </li>
-                    <li class="navitem">
-                        <a href="{{ path('app_register') }}"><button>Inscription</button></a>
-                    </li>
-                {% endif %}
                 <li class="navitem">
-                    <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                    <a href="{{ path('main') }}"><button>Homepage</button></a>
                 </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="navitem">
-                        <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
-                    </li>
-                {% endif %}
+                <li class="navitem">
+                    <a href="{{ path('app_message_index') }}"><button>Messages</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index') }}"><button>Grilles</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_users_index') }}"><button>user</button></a>
+                </li>
             </ul>
         </nav>
     </header>

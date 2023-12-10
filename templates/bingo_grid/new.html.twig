@@ -34,7 +34,16 @@
         </nav>
     </header>
 
-    {{ include('bingo_grid/_form.html.twig') }}
+    <main>
+        <h2>Create a new grid</h2>
+        <div class="redborder">
+            {{ include('bingo_grid/_form.html.twig') }}
+        </div>
 
-    <a href="{{ path('app_bingo_grid_index') }}">back to list</a>
+        <a href="{{ path('app_bingo_grid_index') }}"><button class="commonbtn">back to list</button></a>
+    </main>
+
+    <footer>
+        <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+    </footer>
 {% endblock %}

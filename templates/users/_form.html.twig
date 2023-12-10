@@ -1,4 +1,27 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div>
+    {{ form_errors(form) }}
+</div>
+<div>
+    {{ form_label(form.email, 'Email : ') }}
+    {{ form_widget(form.email, {'attr': {'class': 'forminput'}}) }}
+</div>
+<div>
+    {{ form_label(form.roles, 'Roles : ') }}
+    {{ form_widget(form.roles, {'attr': {'class': 'forminput'}}) }}
+</div>
+<div>
+    {{ form_label(form.isActif, 'Actif : ') }}
+    {{ form_widget(form.isActif, {'attr': {'class': 'forminput'}}) }}
+</div>
+<div>
+    {{ form_label(form.profilePicture, 'Profile Pic : ') }}
+    {{ form_widget(form.profilePicture, {'attr': {'class': 'forminput'}}) }}
+</div>
+<div>
+    {{ form_label(form.password, 'Password : ') }}
+    {{ form_widget(form.password, {'attr': {'class': 'forminput'}}) }}
+</div>
+
+<button class="btunconnection">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

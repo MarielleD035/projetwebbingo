@@ -3,8 +3,6 @@
 {% block title %}BingoGrid index{% endblock %}
 
 {% block body %}
-
-
     <header>
         <a class="homepagelink" href="{{ path('main')}}"><h1>WEBINGO</h1></a>
         <nav>
@@ -36,31 +34,41 @@
         </nav>
     </header>
 
-    <table class="table">
-        <thead>
+    <main>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Gridname</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for bingo_grid in bingo_grids %}
-            <tr>
-                <td>{{ bingo_grid.id }}</td>
-                <td>{{ bingo_grid.gridname }}</td>
-                <td>
-                    <a href="{{ path('app_bingo_grid_show', {'id': bingo_grid.id}) }}">show</a>
-                    <a href="{{ path('app_bingo_grid_edit', {'id': bingo_grid.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for bingo_grid in bingo_grids %}
+                <tr>
+                    <td>{{ bingo_grid.id }}</td>
+                    <td>{{ bingo_grid.gridname }}</td>
+                    <td>
+                        <a href="{{ path('app_cell_grid', {'id': bingo_grid.id}) }}"><button class="commonbtn">show</button></a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_bingo_grid_edit', {'id': bingo_grid.id}) }}"><button class="commonbtn">edit</button></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('app_bingo_grid_new') }}"><button class="commonbtn">Create new</button></a>
+    </main>
 
-    <a href="{{ path('app_bingo_grid_new') }}">Create new</a>
+
+    <footer>
+        <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+    </footer>
+
+
 {% endblock %}

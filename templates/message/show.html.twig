@@ -4,56 +4,64 @@
 
 {% block body %}
     {% if is_granted('ROLE_ADMIN') %}
-    <header>
-        <a class="homepagelink" href="{{ path('main')}}"><h1>ADMIN</h1></a>
-        <nav>
-            <ul class="navul">
-                <li class="navitem">
-                    <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Admin</button></a>
-                </li>
-                <li class="navitem">
-                    <a href="{{ path('main') }}"><button>Homepage</button></a>
-                </li>
-                <li class="navitem">
-                    <a href="./message"><button>Messages</button></a>
-                </li>
-                <li class="navitem">
-                    <a href="./grid"><button>Grilles</button></a>
-                </li>
-                <li class="navitem">
-                    <a href="{{ path('app_users_index') }}"><button>user</button></a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <h2>{{ message.Objet }}</h2>
+        <header>
+            <a class="homepagelink" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController')}}"><h1>ADMIN</h1></a>
+            <nav>
+                <ul class="navul">
+                    <li class="navitem">
+                        <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Admin</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('main') }}"><button>Homepage</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_message_index') }}"><button>Messages</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_bingo_grid_index') }}"><button>Grilles</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_users_index') }}"><button>user</button></a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    <main>
+        <section id="swhomessagepage">
+            <h2>{{ message.Objet }}</h2>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ message.id }}</td>
-            </tr>
-            <tr>
-                <th>Mail</th>
-                <td>{{ message.mail }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ message.nom }}</td>
-            </tr>
-            <tr>
-                <th>Objet</th>
-                <td>{{ message.Objet }}</td>
-            </tr>
-            <tr>
-                <th>Message</th>
-                <td>{{ message.message }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="redborder">
+                <table class="tableau">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ message.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mail</th>
+                        <td>{{ message.mail }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ message.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Objet</th>
+                        <td>{{ message.Objet }}</td>
+                    </tr>
+                    <tr style="max-height: 500px">
+                        <th>Message</th>
+                        <td><p>{{ message.message }}</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+                {{ include('message/_delete_form.html.twig') }}
+            </div>
 
-    <a href="{{ path('app_message_index') }}"><button class="commonbtn">Back to index</button></a>
+            <a href="{{ path('app_message_index') }}"><button class="commonbtn">Back to index</button></a>
+
+        </section>
+    </main>
 
     <footer>
 
@@ -103,5 +111,5 @@
 
     {% endif %}
 
-    {{ include('message/_delete_form.html.twig') }}
+
 {% endblock %}
