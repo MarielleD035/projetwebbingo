@@ -3,10 +3,34 @@
 {% block title %}Users{% endblock %}
 
 {% block body %}
-    <h1>Users</h1>
+    <header>
+        <a class="homepagelink" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController')}}"><h1>ADMIN</h1></a>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Admin</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('main') }}"><button>Homepage</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_message_index') }}"><button>Messages</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index') }}"><button>Grilles</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_users_index') }}"><button>user</button></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <table class="table">
-        <tbody>
+    <main>
+        <h2>Users</h2>
+
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ user.id }}</td>
@@ -27,12 +51,16 @@
                 <th>IsActif</th>
                 <td>{{ user.isActif ? 'Yes' : 'No' }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_users_index') }}">back to list</a>
+        <a href="{{ path('app_users_index') }}">back to list</a>
 
-    <a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
+        <a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
 
-    {{ include('users/_delete_form.html.twig') }}
+        {{ include('users/_delete_form.html.twig') }}
+    </main>
+
+    <footer></footer>
+
 {% endblock %}

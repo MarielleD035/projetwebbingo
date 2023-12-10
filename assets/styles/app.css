@@ -11,6 +11,12 @@ header {
     background: linear-gradient(60deg, #AF498A , #125B8E  );
 }
 
+main {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .homepagelink {
     text-decoration: none;
     color:white;
@@ -64,6 +70,14 @@ footer {
 
 h2 {
     color: #da60cc
+}
+
+.redborder {
+    display:flex;
+    flex-direction: column;
+    font-size: 16px;
+    border: 3px solid #E36684 ;
+    padding: 20px;
 }
 
 .commonbtn {
@@ -126,6 +140,7 @@ h2 {
     padding:3px;
     border-radius: 5px;
     cursor:pointer;
+    margin:5px;
 }
 
 .btunconnection:hover {
@@ -180,20 +195,20 @@ h2 {
 *
  */
 
-#messageadminview th {
+#messageadminview th, #useradminview th {
     padding: 8px;
     border: 1px solid white;
 }
 
-#messageadminview td {
+#messageadminview td, #useradminview td {
     text-align: center;
 }
 
-#messageadminview tr {
+#messageadminview tr, #useradminview tr {
     width:500px;
 }
 
-#messageadminview {
+#messageadminview, #useradminview {
     padding-left: 30px;
     text-align: center;
 }

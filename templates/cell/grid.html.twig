@@ -5,9 +5,8 @@
 {% block body %}
     <h1>Cell index</h1>
 
-    <table class="table">
+    <table class="table" style="border: 2px solid #553B84 ">
         <tbody>
-        <table border="1">
         {% for i in 1..5 %}
             <tr>
                 {% for j in 1..5 %}
@@ -21,11 +20,6 @@
                 {% endfor %}
             </tr>
         {% endfor %}
-    </table>
-
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
         </tbody>
     </table>
 {% endblock %}

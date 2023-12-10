@@ -3,39 +3,71 @@
 {% block title %}Users index{% endblock %}
 
 {% block body %}
-    <h1>Users index</h1>
+    <header>
+        <a class="homepagelink" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController')}}"><h1>ADMIN</h1></a>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Grilles publiques</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('main') }}"><button>Homepage</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_message_index') }}"><button>Messages</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index') }}"><button>Grilles</button></a>
+                </li>
+                <li class="navitem">
+                    <a href="{{ path('app_users_index') }}"><button>user</button></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>IsActif</th>
-                <th>profile picture
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.isActif ? 'Yes' : 'No' }}</td>
-                <td>{{user.profilePicture}}</td>
-                <td>
-                    <a href="{{ path('app_users_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <main>
+        <section id="useradminview">
+            <h2>Users index</h2>
 
-    <a href="{{ path('app_users_new') }}">Create new</a>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>IsActif</th>
+                    <th>profile picture
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                        <td>{{ user.isActif ? 'Yes' : 'No' }}</td>
+                        <td>{{user.profilePicture}}</td>
+                        <td>
+                            <a href="{{ path('app_users_show', {'id': user.id}) }}"><button class="commonbtn">show</button></a>
+                            <a href="{{ path('app_users_edit', {'id': user.id}) }}"><button class="commonbtn">edit</button></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('app_users_new') }}"><button class="commonbtn">Create new</button></a>
+        </section>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
 {% endblock %}

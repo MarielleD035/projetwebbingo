@@ -7,10 +7,12 @@ use App\Form\UsersType;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/users')]
 class UsersController extends AbstractController
@@ -24,7 +26,7 @@ class UsersController extends AbstractController
     }
 
     #[Route('/new', name: 'app_users_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager,SluggerInterface $slugger): Response
+    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager,SluggerInterface $slugger): Response
     {
         $user = new Users();
         $form = $this->createForm(UsersType::class, $user);
@@ -32,7 +34,12 @@ class UsersController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $pictureFile = $form->get('profilePicture')->getData();
-
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('password')->getData()
+                )
+            );
             
             if ($pictureFile) {
                 $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
