@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\BingoGrid;
+use App\Entity\Cell;
 use App\Form\BingoGrid3Type;
 use App\Repository\BingoGridRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -77,5 +78,24 @@ class BingoGridController extends AbstractController
         }
 
         return $this->redirectToRoute('app_bingo_grid_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    #[Route('/{id}', name: 'app_bingo_grid_generateCells', methods: ['GET'])]
+    public function generateCells(BingoGrid $bingoGrid, EntityManagerInterface $entityManager): Response
+    {
+
+        $cell = New Cell();
+        $cell->setCoordX('NULL');
+        $cell->setContent(1);
+        $cell->setBingoGrid($bingoGrid->getId());
+        $cell->setCoordY(2);
+
+        $entityManager->persist($cell);
+        $entityManager->flush();
+        return $this->render('cell/grid.html.twig', [
+            'cells' => $cell,
+            'bingogrid' => $bingoGrid,
+        ]);
     }
 }

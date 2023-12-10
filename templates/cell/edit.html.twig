@@ -3,11 +3,49 @@
 {% block title %}Edit Cell{% endblock %}
 
 {% block body %}
-    <h1>Edit Cell</h1>
+    <header>
+        <a class="homepagelink" href="{{ path('main')}}"><h1>WEBINGO</h1></a>
+        <nav>
+            <ul class="navul">
+                <li class="navitem">
+                    <a href="{{ path('app_bingo_grid_index')}}"><button>Grilles publiques</button></a>
+                </li>
+                {% if is_granted('ROLE_USER') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ path('app_logout') }}"><button>Déconnexion</button></a>
+                    </li>
+                {% else %}
+                    <li class="navitem">
+                        <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                    </li>
+                    <li class="navitem">
+                        <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+                    </li>
+                {% endif %}
+                <li class="navitem">
+                    <a href="{{ path('app_message_new') }}"><button>message</button></a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="navitem">
+                        <a class="nav-link" href="{{ ea_url().setController('App\\Controller\\Admin\\DashboardController') }}"><button>Administration</button></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Edit Cell</h2>
+        <div class="redborder">
+            {{ include('cell/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('cell/_delete_form.html.twig') }}
 
-    {{ include('cell/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_cell_index') }}">back to list</a>
+        </div>
+        <a href="{{ path('app_bingo_grid_index') }}"><button class="commonbtn">back to list</button></a>
 
-    {{ include('cell/_delete_form.html.twig') }}
+    </main>
+
+    <footer>
+        <p>Créé avec amour et haine par des étudiants en L3 informatique, saupoudré de problèmes d'ordinateurs.</p>
+    </footer>
 {% endblock %}

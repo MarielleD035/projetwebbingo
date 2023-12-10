@@ -43,17 +43,22 @@
                 <tr style="border: 2px solid #553B84 ">
                     {% for j in 1..5 %}
                         <td style="border: 2px solid #553B84 ">
-                            {% for cell in cells %}
-                                {% if cell.coordX == i and cell.coordY == j %}
-                                    {{ cell.content }}
-                                {% endif %}
-                            {% endfor %}
+                                {% for cell in cells %}
+                                    {% if cell.coordX == i and cell.coordY == j %}
+                                        {{ cell.content }}
+                                        <a href="{{ path('app_cell_edit', {'id': cell.id, 'coordX': i, 'coordY': j, 'gridid': bingogrid })}}"><button class="btunconnection">Modifier la cases</button></a>
+                                    {% endif %}
+                                {% endfor %}
+                                <a href="{{ path('app_cell_new', {'id': bingogrid, "coordX": i, 'coordY': j })}}"><button class="btunconnection">Create la cases</button></a>
+
                         </td>
                     {% endfor %}
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+        <a href="{{ path('app_bingo_grid_index') }}"><button class="commonbtn">back to list</button></a>
+
     </main>
 
     <footer>
