@@ -46,10 +46,16 @@
                                 {% for cell in cells %}
                                     {% if cell.coordX == i and cell.coordY == j %}
                                         {{ cell.content }}
-                                        <a href="{{ path('app_cell_edit', {'id': cell.id, 'coordX': i, 'coordY': j, 'gridid': bingogrid })}}"><button class="btunconnection">Modifier la cases</button></a>
+                                        {% if is_granted('ROLE_USER') %}
+                                            <a href="{{ path('app_cell_edit', {'id': cell.id, 'coordX': i, 'coordY': j, 'gridid': bingogrid })}}"><button class="btunconnection">Modifier la cases</button></a>
+
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
+                            {% if is_granted('ROLE_USER') %}
                                 <a href="{{ path('app_cell_new', {'id': bingogrid, "coordX": i, 'coordY': j })}}"><button class="btunconnection">Create la cases</button></a>
+
+                            {% endif %}
 
                         </td>
                     {% endfor %}

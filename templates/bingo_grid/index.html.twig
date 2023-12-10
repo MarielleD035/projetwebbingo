@@ -35,6 +35,7 @@
     </header>
 
     <main>
+        <h2>Public Grids</h2>
         <table class="table">
             <thead>
             <tr>
@@ -62,7 +63,9 @@
             {% endfor %}
             </tbody>
         </table>
-        <a href="{{ path('app_bingo_grid_new') }}"><button class="commonbtn">Create new</button></a>
+        {% if is_granted('ROLE_USER') %}
+            <a href="{{ path('app_bingo_grid_new') }}"><button class="commonbtn">Create new</button></a>
+        {% endif %}
     </main>
 
 
