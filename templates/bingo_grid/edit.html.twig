@@ -35,10 +35,16 @@
     </header>
 
     <main>
-        {{ include('bingo_grid/_form.html.twig', {'button_label': 'Update'}) }}
+        <h2>Modification de la grille</h2>
+            <div class="redborder">
+                {{ include('bingo_grid/_form.html.twig', {'button_label': 'Update'}) }}
+                {{ include('bingo_grid/_delete_form.html.twig') }}
+            </div>
+        <a href="{{ path('app_cell_grid', {'id': bingo_grid.id}) }}"><button class="commonbtn">Edit cases grille</button></a>
 
-        <a href="{{ path('app_bingo_grid_index') }}">back to list</a>
-
-        {{ include('bingo_grid/_delete_form.html.twig') }}
+        <a href="{{ path('app_bingo_grid_index') }}"><button class="commonbtn">back to list</button></a>
     </main>
+    <footer>
+
+    </footer>
 {% endblock %}
