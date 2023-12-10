@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\BingoGrid;
+use App\Entity\MakeAccess;
+use App\Entity\Users;
 use App\Form\BingoGrid3Type;
 use App\Repository\BingoGridRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,26 +12,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 #[Route('/bingo/grid')]
 class BingoGridController extends AbstractController
 {
     #[Route('/', name: 'app_bingo_grid_index', methods: ['GET'])]
-    public function index(BingoGridRepository $bingoGridRepository): Response
+    public function index(BingoGridRepository $bingoGridRepository, #[CurrentUser()] ?Users $user): Response
     {
         return $this->render('bingo_grid/index.html.twig', [
             'bingo_grids' => $bingoGridRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
     #[Route('/new', name: 'app_bingo_grid_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, #[CurrentUser()] ?Users $user): Response
     {
         $bingoGrid = new BingoGrid();
         $form = $this->createForm(BingoGrid3Type::class, $bingoGrid);
         $form->handleRequest($request);
 
+        $makeAccess = new MakeAccess();
+        $makeAccess->setIduser($user);
+        $makeAccess->setIdGrid($bingoGrid->getId());
+        $bingoGrid->addMakeAccess($makeAccess);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($makeAccess);
             $entityManager->persist($bingoGrid);
             $entityManager->flush();
 
