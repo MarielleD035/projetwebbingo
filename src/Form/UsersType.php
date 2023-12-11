@@ -21,7 +21,8 @@ class UsersType extends AbstractType
             ->add('isActif')
             ->add('profilePicture', FileType::class, [
                 'mapped' => false, 
-                'label'  => 'profile picture ( image )'  
+                'label'  => 'profile picture ( image )',
+                'required' => false
                 ])
             ->add('password')
             ;

@@ -23,7 +23,8 @@ class RegistrationFormType extends AbstractType
             ->add('email')
             ->add('pp', FileType::class, [
                 'mapped'=>false,
-                'label' => 'please upload a file'
+                'label' => 'please upload a file',
+                'required' => false
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
