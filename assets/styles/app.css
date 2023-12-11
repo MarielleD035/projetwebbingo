@@ -200,7 +200,7 @@ h2 {
     border: 2px solid white;
 }
 
-#messageadminview td, #useradminview td {
+#messageadminview td, #useradminview td, #gridtable td {
     text-align: center;
     border: 1px dotted #125B8E  ;
 }
@@ -220,7 +220,7 @@ h2 {
     align-items: center;
 }
 
-#swhomessagepage tr, #showuseradmin tr {
+#swhomessagepage tr, #showuseradmin tr, #gridtable tr {
     width: 500px;
     max-height: 500px;
 }
@@ -230,7 +230,7 @@ h2 {
 
 }
 
-#swhomessagepage th, #showuseradmin th {
+#swhomessagepage th, #showuseradmin th, #gridtable th {
     padding: 8px;
     border: 1px solid white;
 }
