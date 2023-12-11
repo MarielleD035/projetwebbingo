@@ -32,8 +32,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            $entityManager->persist($user);
-            $entityManager->flush();
+
 
             if ($pictureFile) {
                 $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -51,6 +50,8 @@ class RegistrationController extends AbstractController
                 $user->setProfilePicture($newFilename);
 
             }
+            $entityManager->persist($user);
+            $entityManager->flush();
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute('main');
